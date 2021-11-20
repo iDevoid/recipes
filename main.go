@@ -32,7 +32,7 @@ func main() {
 	handler := rest.RecipesInit(usecase)
 	router := routing.RecipesRouting(handler)
 
-	server := routers.Initialize(":8080", router, "recipes")
+	server := routers.Initialize(":"+os.Getenv("PORT"), router, "recipes")
 	if testInit {
 		logrus.Info("Initialize test mode Finished!")
 		os.Exit(0)
