@@ -12,7 +12,7 @@ func RecipesRouting(handler rest.RecipesHandler) []routers.Router {
 	return []routers.Router{
 		{
 			Method:  http.MethodGet,
-			Path:    "/",
+			Path:    "/test",
 			Handler: handler.Test,
 		},
 

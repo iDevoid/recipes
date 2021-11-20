@@ -45,13 +45,19 @@ func (h *recipesHandler) CreateRecipe(ctx *fiber.Ctx) error {
 	}
 	rawFail, _ := json.Marshal(failedResp)
 
-	var body model.Recipe
-	err := json.Unmarshal(ctx.Body(), &body)
-	if err != nil || !body.Valid() {
+	cost, _ := strconv.Atoi(ctx.FormValue("cost"))
+	body := model.Recipe{
+		Title:       ctx.FormValue("title"),
+		MakingTime:  ctx.FormValue("making_time"),
+		Serves:      ctx.FormValue("serves"),
+		Ingredients: ctx.FormValue("ingredients"),
+		Cost:        int32(cost),
+	}
+	if !body.Valid() {
 		return ctx.Send(rawFail)
 	}
 
-	err = h.recipesCase.CreateRecipe(ctx.Context(), &body)
+	err := h.recipesCase.CreateRecipe(ctx.Context(), &body)
 	if err != nil {
 		return ctx.Send(rawFail)
 	}
@@ -110,13 +116,19 @@ func (h *recipesHandler) UpdateRecipe(ctx *fiber.Ctx) error {
 	}
 	rawFail, _ := json.Marshal(failedResp)
 
-	var body model.Recipe
-	err := json.Unmarshal(ctx.Body(), &body)
-	if err != nil || !body.Valid() {
+	cost, _ := strconv.Atoi(ctx.FormValue("cost"))
+	body := model.Recipe{
+		Title:       ctx.FormValue("title"),
+		MakingTime:  ctx.FormValue("making_time"),
+		Serves:      ctx.FormValue("serves"),
+		Ingredients: ctx.FormValue("ingredients"),
+		Cost:        int32(cost),
+	}
+	if !body.Valid() {
 		return ctx.Send(rawFail)
 	}
 
-	err = h.recipesCase.UpdateRecipe(ctx.Context(), &body)
+	err := h.recipesCase.UpdateRecipe(ctx.Context(), &body)
 	if err != nil {
 		return ctx.Send(rawFail)
 	}
