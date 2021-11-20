@@ -1,8 +1,6 @@
 package routers
 
 import (
-	"fmt"
-
 	"github.com/gofiber/fiber/v2"
 	"github.com/sirupsen/logrus"
 )
@@ -38,10 +36,8 @@ func Initialize(host string, routes []Router, domain string) Routers {
 func (r *routing) Serve() {
 	server := fiber.New()
 
-	group := server.Group(fmt.Sprintf("/%s", r.domain))
-
 	for _, router := range r.routes {
-		group.Add(router.Method, router.Path, router.Handler)
+		server.Add(router.Method, router.Path, router.Handler)
 	}
 
 	logrus.WithFields(logrus.Fields{

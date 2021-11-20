@@ -13,6 +13,7 @@ import (
 //go:generate mockgen -destination=../../../mocks/recipes/handler_mock.go -package=recipes_mock -source=recipes.go
 
 type RecipesHandler interface {
+	Test(c *fiber.Ctx) error
 	CreateRecipe(ctx *fiber.Ctx) error
 	GetAllRecipes(ctx *fiber.Ctx) error
 	GetRecipe(ctx *fiber.Ctx) error
@@ -29,6 +30,11 @@ func RecipesInit(recipesCase recipes.Usecase) RecipesHandler {
 	return &recipesHandler{
 		recipesCase,
 	}
+}
+
+// Test is handler testing
+func (uh *recipesHandler) Test(ctx *fiber.Ctx) error {
+	return ctx.SendString("Hello, World!")
 }
 
 func (h *recipesHandler) CreateRecipe(ctx *fiber.Ctx) error {

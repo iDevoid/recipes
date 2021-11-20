@@ -11,31 +11,37 @@ import (
 func RecipesRouting(handler rest.RecipesHandler) []routers.Router {
 	return []routers.Router{
 		{
-			Method:  http.MethodPost,
+			Method:  http.MethodGet,
 			Path:    "/",
+			Handler: handler.Test,
+		},
+
+		{
+			Method:  http.MethodPost,
+			Path:    "/recipes",
 			Handler: handler.CreateRecipe,
 		},
 
 		{
 			Method:  http.MethodGet,
-			Path:    "/:id",
+			Path:    "/recipes/:id",
 			Handler: handler.GetRecipe,
 		},
 		{
 			Method:  http.MethodGet,
-			Path:    "/",
+			Path:    "/recipes",
 			Handler: handler.GetAllRecipes,
 		},
 
 		{
 			Method:  http.MethodPatch,
-			Path:    "/:id",
+			Path:    "/recipes/:id",
 			Handler: handler.UpdateRecipe,
 		},
 
 		{
 			Method:  http.MethodDelete,
-			Path:    "/:id",
+			Path:    "/recipes/:id",
 			Handler: handler.DeleteRecipe,
 		},
 	}
