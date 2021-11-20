@@ -18,7 +18,7 @@ const (
 			:cost,
 			:created_at,
 			:updated_at	
-		) RETURNING id;
+		);
 	`
 
 	RecipesSelectAll = `
