@@ -9,7 +9,7 @@ const (
 			ingredients,
 			cost,
 			created_at,
-			updated_at,
+			updated_at
 		) VALUES (	
 			:title,
 			:making_time,
@@ -17,7 +17,7 @@ const (
 			:ingredients,
 			:cost,
 			:created_at,
-			:updated_at,		
+			:updated_at	
 		) RETURNING id;
 	`
 
